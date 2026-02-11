@@ -3,6 +3,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import accuracy_score, mean_absolute_error
+import joblib
 
 # Load data
 data = pd.read_csv("student_data.csv")
@@ -28,6 +29,10 @@ predictions = model.predict(X_test)
 # Show predictions vs real results
 print("Predicted Grades:", predictions)
 print("Real Grades:", y_test.values)
+
+joblib.dump(model, "student_model.pkl")
+
+print("Model saved!")
 
 # Evaluate model
 error = mean_absolute_error(y_test, predictions)
